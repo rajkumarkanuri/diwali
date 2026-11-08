@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diwali: The Festival of Lights — Taj Mahal Celebration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Rozha+One&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================================
+       DESIGN TOKENS & AUTHENTIC INDIAN FESTIVAL PALETTE
+       ======================================================== */
+    :root {
+      --indigo: #140b2e;
+      --midnight-plum: #280a3c;
+      --deep-night: #0a0214;
+      --zari-gold: #f4c95d;
+      --bright-gold: #ffd700;
+      --marigold: #ff9f1c;
+      --vermilion: #e63b2e;
+      --peacock-teal: #0e7c86;
+      --ivory: #fff4dc;
+      --trans-dur: 2.2s;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Cormorant Garamond', 'Georgia', serif;
+      color: var(--ivory);
+      background: var(--deep-night);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Global Dynamic Night Sky */
+    #sky-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: radial-gradient(circle at 50% 75%, var(--midnight-plum) 0%, var(--indigo) 55%, var(--deep-night) 100%);
+      transition: background var(--trans-dur) ease;
+    }
+
+    /* Horizon Twilight & Dawn Glow */
+    #horizon-glow {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 44vh;
+      background: radial-gradient(ellipse at 50% 100%, rgba(255, 159, 28, 0.32) 0%, rgba(230, 59, 46, 0.16) 45%, transparent 75%);
+      opacity: 0.88;
+      z-index: 1;
+      pointer-events: none;
+      transition: opacity var(--trans-dur) ease;
+    }
+
+    /* Fullscreen Floating Sky Lanterns Canvas */
+    #lanterns-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* ========================================================
+       FULLSCREEN TAJ MAHAL STAGE & CAMERA DRIFT
+       ======================================================== */
+    #stage-container {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      z-index: 1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    #stage-inner {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      will-change: transform;
+    }
+
+    #taj-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: hidden;
+    }
+
+    /* Taj Mahal Hero Group with Cinematic Ken Burns Camera Motion */
+    .taj-mahal-hero {
+      opacity: 1;
+      transform-origin: 50% 65%;
+      animation: tajKenBurns 30s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    @keyframes tajKenBurns {
+      0% {
+        transform: scale(1.0) translate3d(0, 0, 0);
+      }
+      50% {
+        transform: scale(1.06) translate3d(0, -1.4%, 0);
+      }
+      100% {
+        transform: scale(1.03) translate3d(0.8%, -0.7%, 0);
+      }
+    }
+
+    /* Taj Mahal Reflecting Pool Shimmer Animation */
+    #w7-reflection,
+    rect[fill*="w7-pool-water"] {
+      animation: poolWaterShimmer 4s ease-in-out infinite alternate;
+    }
+    @keyframes poolWaterShimmer {
+      0% { opacity: 0.88; filter: brightness(0.96); }
+      50% { opacity: 1.0; filter: brightness(1.08); }
+      100% { opacity: 0.92; filter: brightness(1.02); }
+    }
+
+    /* Promenade Diyas & Dome Finial Living Glow */
+    .taj-mahal-hero circle[fill="#ffdd55"],
+    .taj-mahal-hero circle[fill="#ffd700"],
+    .taj-mahal-hero circle[fill*="glow"],
+    .taj-mahal-hero ellipse[fill*="lantern"],
+    .taj-mahal-hero path[fill*="glow"] {
+      animation: livingGlow 2.4s ease-in-out infinite alternate;
+    }
+    @keyframes livingGlow {
+      0% { opacity: 0.75; transform: scale(0.96); }
+      50% { opacity: 1.0; transform: scale(1.14); }
+      100% { opacity: 0.82; transform: scale(1.0); }
+    }
+
+    /* Fullscreen Fireworks Canvas */
+    #fireworks-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    /* ========================================================
+       ROTATING RANGOLI MANDALA
+       ======================================================== */
+    #mandala-wrap {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(85vw, 780px);
+      height: min(85vw, 780px);
+      pointer-events: none;
+      opacity: 0.14;
+      transition: opacity 2s ease;
+      z-index: 1;
+    }
+    #mandala-wrap svg {
+      width: 100%;
+      height: 100%;
+      animation: spin-mandala 120s linear infinite;
+    }
+    @keyframes spin-mandala {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ========================================================
+       CINEMATIC CELEBRATION OVERLAY & WISHES
+       ======================================================== */
+    #celebration-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 3.5rem;
+      text-align: center;
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    /* Cinematic Gradient Scrim */
+    #stage-scrim {
+      position: fixed;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      background: linear-gradient(to top, rgba(10, 2, 20, 0.92) 0%, rgba(10, 2, 20, 0.45) 28%, transparent 60%),
+                  linear-gradient(to bottom, rgba(10, 2, 20, 0.75) 0%, transparent 20%);
+    }
+
+    .celebration-title-wrap {
+      margin-bottom: 0.8rem;
+      pointer-events: auto;
+    }
+
+    .main-title {
+      font-family: 'Rozha One', 'Cinzel Decorative', serif;
+      font-size: clamp(2.8rem, 8vw, 5.8rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: 0.04em;
+      background: linear-gradient(135deg, #fff7da 0%, var(--bright-gold) 35%, var(--marigold) 70%, var(--vermilion) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gold-pulse 4s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 24px rgba(255, 215, 0, 0.5));
+    }
+    @keyframes gold-pulse {
+      0% { filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.45)); transform: scale(1); }
+      100% { filter: drop-shadow(0 0 38px rgba(255, 159, 28, 0.8)); transform: scale(1.02); }
+    }
+
+    .sub-title {
+      font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+      font-style: italic;
+      letter-spacing: 0.18em;
+      color: var(--zari-gold);
+      margin-top: 0.3rem;
+      text-shadow: 0 0 16px rgba(244, 201, 93, 0.5);
+    }
+
+    /* Wishes Carousel */
+    #wishes-carousel {
+      position: relative;
+      width: min(90vw, 760px);
+      height: 5.5rem;
+      margin-top: 0.6rem;
+    }
+    .wish-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--ivory);
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 1.2s ease, transform 1.2s ease;
+      pointer-events: none;
+    }
+    .wish-text.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* ========================================================
+       OPENING INTRO SCREEN
+       ======================================================== */
+    #intro-screen {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 60%, #2b0a3d 0%, #170522 55%, #08010e 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2.5rem;
+      z-index: 100;
+      transition: opacity 1.8s ease, visibility 1.8s ease;
+    }
+    #intro-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-diya {
+      width: 64px;
+      height: 76px;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 18px rgba(255, 170, 0, 0.7));
+      animation: intro-flame-pulse 1.8s ease-in-out infinite alternate;
+    }
+    @keyframes intro-flame-pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.06); }
+    }
+
+    .intro-subtitle {
+      font-size: clamp(1rem, 2.4vw, 1.35rem);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--zari-gold);
+      margin-bottom: 0.6rem;
+      text-shadow: 0 0 12px rgba(244, 201, 93, 0.5);
+    }
+
+    .intro-title {
+      font-family: 'Rozha One', 'Cinzel Decorative', serif;
+      font-size: clamp(2.4rem, 7.5vw, 5.2rem);
+      font-weight: 900;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #fff7da 0%, var(--bright-gold) 45%, var(--marigold) 85%, #ff5500 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.2rem;
+      filter: drop-shadow(0 0 24px rgba(255, 215, 0, 0.45));
+    }
+
+    .intro-desc {
+      max-width: 640px;
+      font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+      font-style: italic;
+      color: rgba(255, 248, 231, 0.9);
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+
+    .start-btn {
+      padding: 1rem 3.2rem;
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #12041f;
+      background: linear-gradient(135deg, #fff7da 0%, var(--bright-gold) 40%, var(--marigold) 100%);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.7), 0 10px 25px rgba(0, 0, 0, 0.6);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .start-btn:hover, .start-btn:focus-visible {
+      transform: scale(1.08) translateY(-3px);
+      box-shadow: 0 0 55px rgba(255, 215, 0, 0.95), 0 15px 35px rgba(0, 0, 0, 0.7);
+    }
+
+    /* ========================================================
+       ACCESSIBILITY & REDUCED MOTION
+       ======================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      #mandala-wrap svg { animation: none; }
+      .taj-mahal-hero { animation: none !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DYNAMIC SKY BACKGROUND -->
+  <div id="sky-bg"></div>
+  <div id="horizon-glow"></div>
+
+  <!-- FLOATING SKY LANTERNS CANVAS -->
+  <canvas id="lanterns-canvas" aria-hidden="true"></canvas>
+
+  <!-- FIREWORKS CANVAS -->
+  <canvas id="fireworks-canvas" aria-hidden="true"></canvas>
+
+  <!-- ROTATING RANGOLI MANDALA -->
+  <div id="mandala-wrap" aria-hidden="true">
+    <svg viewBox="-300 -300 600 600" width="100%" height="100%">
+      <defs>
+        <radialGradient id="man-gold" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFE680"/>
+          <stop offset="100%" stop-color="#B8860B"/>
+        </radialGradient>
+        <radialGradient id="man-pink" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFB6D9"/>
+          <stop offset="100%" stop-color="#C71585"/>
+        </radialGradient>
+        <radialGradient id="man-orange" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFD080"/>
+          <stop offset="100%" stop-color="#CC6600"/>
+        </radialGradient>
+      </defs>
+      <circle r="22" fill="url(#man-gold)" opacity="0.9"/>
+      <circle r="14" fill="none" stroke="#FFE680" stroke-width="1.5" opacity="0.6"/>
+      <circle r="32" fill="none" stroke="#B8860B" stroke-width="1" opacity="0.5"/>
+      <g id="man-p1">
+        <path d="M0,-45 C12,-38 15,-22 0,-8 C-15,-22 -12,-38 0,-45Z" fill="url(#man-pink)" opacity="0.8"/>
+      </g>
+      <use href="#man-p1" transform="rotate(45)"/><use href="#man-p1" transform="rotate(90)"/><use href="#man-p1" transform="rotate(135)"/>
+      <use href="#man-p1" transform="rotate(180)"/><use href="#man-p1" transform="rotate(225)"/><use href="#man-p1" transform="rotate(270)"/><use href="#man-p1" transform="rotate(315)"/>
+      <g id="man-p2">
+        <path d="M0,-90 C10,-78 12,-65 0,-55 C-12,-65 -10,-78 0,-90Z" fill="url(#man-orange)" opacity="0.7"/>
+      </g>
+      <use href="#man-p2" transform="rotate(22.5)"/><use href="#man-p2" transform="rotate(45)"/><use href="#man-p2" transform="rotate(67.5)"/>
+      <use href="#man-p2" transform="rotate(90)"/><use href="#man-p2" transform="rotate(112.5)"/><use href="#man-p2" transform="rotate(135)"/>
+      <use href="#man-p2" transform="rotate(157.5)"/><use href="#man-p2" transform="rotate(180)"/><use href="#man-p2" transform="rotate(202.5)"/>
+      <use href="#man-p2" transform="rotate(225)"/><use href="#man-p2" transform="rotate(247.5)"/><use href="#man-p2" transform="rotate(270)"/><use href="#man-p2" transform="rotate(292.5)"/>
+      <use href="#man-p2" transform="rotate(315)"/><use href="#man-p2" transform="rotate(337.5)"/>
+      <g id="man-p3">
+        <path d="M0,-155 C8,-140 10,-128 0,-115 C-10,-128 -8,-140 0,-155Z" fill="url(#man-gold)" opacity="0.6"/>
+      </g>
+      <use href="#man-p3" transform="rotate(11.25)"/><use href="#man-p3" transform="rotate(33.75)"/><use href="#man-p3" transform="rotate(56.25)"/><use href="#man-p3" transform="rotate(78.75)"/>
+      <use href="#man-p3" transform="rotate(101.25)"/><use href="#man-p3" transform="rotate(123.75)"/><use href="#man-p3" transform="rotate(146.25)"/><use href="#man-p3" transform="rotate(168.75)"/>
+      <use href="#man-p3" transform="rotate(191.25)"/><use href="#man-p3" transform="rotate(213.75)"/><use href="#man-p3" transform="rotate(236.25)"/><use href="#man-p3" transform="rotate(258.75)"/>
+      <use href="#man-p3" transform="rotate(281.25)"/><use href="#man-p3" transform="rotate(303.75)"/><use href="#man-p3" transform="rotate(326.25)"/><use href="#man-p3" transform="rotate(348.75)"/>
+      <circle r="225" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- STAGE: FULLSCREEN TAJ MAHAL -->
+  <div id="stage-container" aria-hidden="true">
+    <div id="stage-inner">
+      <svg id="taj-svg" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
+        <!-- WONDER 7: The Taj Mahal (Agra, India) — THE SUPREME MASTERPIECE -->
+<g id="taj-mahal-hero" class="taj-mahal-hero active">
+  <defs>
+    <!-- Glorious Twilight-to-Dawn Sky: Saffron, Blush Pink, Lavender & Celestial Indigo -->
+    <linearGradient id="w7-sky-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#120626"/>
+      <stop offset="30%" stop-color="#280e38"/>
+      <stop offset="55%" stop-color="#5a1844"/>
+      <stop offset="78%" stop-color="#a83248"/>
+      <stop offset="92%" stop-color="#e86e30"/>
+      <stop offset="100%" stop-color="#ffb344"/>
+    </linearGradient>
+
+    <!-- Translucent White Makrana Marble Gradients (catching dawn glow & lavender shadow) -->
+    <linearGradient id="w7-marble-lit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#fff8f0"/>
+      <stop offset="70%" stop-color="#f6e8f4"/>
+      <stop offset="100%" stop-color="#d8c6de"/>
+    </linearGradient>
+    <linearGradient id="w7-marble-shade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#baa4be"/>
+      <stop offset="50%" stop-color="#d4c2d8"/>
+      <stop offset="100%" stop-color="#eedee8"/>
+    </linearGradient>
+
+    <!-- Pure 24K Gold Finials, Crescents & Pietra Dura Inlays -->
+    <linearGradient id="w7-gold-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff6aa"/>
+      <stop offset="35%" stop-color="#ffd700"/>
+      <stop offset="75%" stop-color="#d49216"/>
+      <stop offset="100%" stop-color="#8c5806"/>
+    </linearGradient>
+
+    <!-- Charbagh Reflecting Pool (Al-Hawd al-Kawthar) Water Gradient -->
+    <linearGradient id="w7-pool-water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#14182c" stop-opacity="0.95"/>
+      <stop offset="35%" stop-color="#2c1a3c" stop-opacity="0.88"/>
+      <stop offset="70%" stop-color="#421a3a" stop-opacity="0.82"/>
+      <stop offset="100%" stop-color="#120c22" stop-opacity="0.96"/>
+    </linearGradient>
+
+    <!-- Symmetrical Italian Cypress Trees (Sarv) -->
+    <linearGradient id="w7-cypress-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e4432"/>
+      <stop offset="50%" stop-color="#11291e"/>
+      <stop offset="100%" stop-color="#08140e"/>
+    </linearGradient>
+
+    <!-- Water Ripples & Soft Dream Glow Filters -->
+    <filter id="w7-aurora-glow">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="w7-dome-glow">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- BACKGROUND: Dawn Sky, Divine Golden Aura & Jamuna River Horizon -->
+  <g class="layer-bg">
+    <rect x="0" y="0" width="800" height="450" fill="url(#w7-sky-grad)"/>
+
+    <!-- Slender Crescent Moon & Festival Dawn Stars -->
+    <path d="M680,60 A12,12 0 1 0 690,75 A14,14 0 1 1 680,60 Z" fill="#fff8d0" opacity="0.95" filter="url(#w7-dome-glow)"/>
+    <circle cx="160" cy="50" r="1.5" fill="#fff" opacity="0.9"/>
+    <circle cx="230" cy="35" r="1.2" fill="#fff" opacity="0.75"/>
+    <circle cx="290" cy="65" r="1.6" fill="#ffd700" opacity="0.9"/>
+    <circle cx="610" cy="45" r="1.3" fill="#fff" opacity="0.8"/>
+
+    <!-- Magnificent Golden Sunburst Radiant Behind Main Dome -->
+    <circle cx="400" cy="180" r="160" fill="url(#w7-gold-grad)" opacity="0.2" filter="url(#w7-aurora-glow)"/>
+    <circle cx="400" cy="175" r="85" fill="#fff0aa" opacity="0.28" filter="url(#w7-aurora-glow)"/>
+
+    <!-- Yamuna Riverbank Horizon Line -->
+    <rect x="0" y="270" width="800" height="8" fill="#5a182c" opacity="0.6"/>
+  </g>
+
+  <!-- MIDGROUND: The Immortal Mausoleum, Onion Dome, Chhatris & Four Minarets -->
+  <g class="layer-mid">
+    <!-- Elevated White Marble Terrace / Plinth (Chamran) -->
+    <polygon class="wonder-paths" points="186,270 614,270 630,282 170,282" fill="url(#w7-marble-lit)" stroke="#dac6dc" stroke-width="1.2"/>
+    <rect x="195" y="279" width="410" height="3" fill="#9c87a0"/>
+
+    <!-- ================= FOUR MAJESTIC MINARETS ================= -->
+    <!-- Authentic Feature: The 4 minarets lean slightly outwards (~2 degrees) to protect the tomb in earthquakes -->
+
+    <!-- OUTER LEFT MINARET (Leaning slightly outward to left) -->
+    <g class="wonder-paths">
+      <!-- Minaret Shaft with 3 Tiers -->
+      <polygon points="196,270 216,270 213,142 197,142" fill="url(#w7-marble-lit)" stroke="#cbb4cc" stroke-width="0.8"/>
+      <!-- Balcony Tier 1 -->
+      <rect x="194" y="228" width="24" height="4" fill="#ffffff" stroke="#927896" stroke-width="0.6"/>
+      <!-- Balcony Tier 2 -->
+      <rect x="195" y="185" width="22" height="4" fill="#ffffff" stroke="#927896" stroke-width="0.6"/>
+      <!-- Balcony Tier 3 (Upper Gallery) -->
+      <rect x="196" y="142" width="20" height="4" fill="#ffffff" stroke="#927896" stroke-width="0.6"/>
+      <!-- Minaret Chhatri (Cupola Pavillion) -->
+      <path d="M197,142 L206,130 L215,142 Z" fill="url(#w7-marble-lit)" stroke="#cbb4cc" stroke-width="0.8"/>
+      <!-- Gilded Finial & Lotus Crescent -->
+      <line x1="206" y1="130" x2="206" y2="120" stroke="url(#w7-gold-grad)" stroke-width="1.8"/>
+      <circle cx="206" cy="119" r="2" fill="#fff" filter="url(#w7-dome-glow)"/>
+    </g>
+
+    <!-- INNER LEFT MINARET (Perspective recessed) -->
+    <g class="wonder-paths" opacity="0.95">
+      <polygon points="266,270 282,270 280,150 268,150" fill="url(#w7-marble-shade)" stroke="#cbb4cc" stroke-width="0.8"/>
+      <rect x="264" y="230" width="20" height="3" fill="#eee0ed"/>
+      <rect x="265" y="190" width="18" height="3" fill="#eee0ed"/>
+      <path d="M268,150 L275,140 L282,150 Z" fill="url(#w7-marble-lit)"/>
+      <line x1="275" y1="140" x2="275" y2="132" stroke="url(#w7-gold-grad)" stroke-width="1.4"/>
+    </g>
+
+    <!-- INNER RIGHT MINARET (Perspective recessed) -->
+    <g class="wonder-paths" opacity="0.95">
+      <polygon points="518,270 534,270 532,150 520,150" fill="url(#w7-marble-shade)" stroke="#cbb4cc" stroke-width="0.8"/>
+      <rect x="516" y="230" width="20" height="3" fill="#eee0ed"/>
+      <rect x="517" y="190" width="18" height="3" fill="#eee0ed"/>
+      <path d="M518,150 L525,140 L532,150 Z" fill="url(#w7-marble-lit)"/>
+      <line x1="525" y1="140" x2="525" y2="132" stroke="url(#w7-gold-grad)" stroke-width="1.4"/>
+    </g>
+
+    <!-- OUTER RIGHT MINARET (Leaning slightly outward to right) -->
+    <g class="wonder-paths">
+      <polygon points="584,270 604,270 603,142 587,142" fill="url(#w7-marble-lit)" stroke="#cbb4cc" stroke-width="0.8"/>
+      <rect x="582" y="228" width="24" height="4" fill="#ffffff" stroke="#927896" stroke-width="0.6"/>
+      <rect x="583" y="185" width="22" height="4" fill="#ffffff" stroke="#927896" stroke-width="0.6"/>
+      <rect x="584" y="142" width="20" height="4" fill="#ffffff" stroke="#927896" stroke-width="0.6"/>
+      <path d="M585,142 L594,130 L603,142 Z" fill="url(#w7-marble-lit)" stroke="#cbb4cc" stroke-width="0.8"/>
+      <line x1="594" y1="130" x2="594" y2="120" stroke="url(#w7-gold-grad)" stroke-width="1.8"/>
+      <circle cx="594" cy="119" r="2" fill="#fff" filter="url(#w7-dome-glow)"/>
+    </g>
+
+    <!-- ================= MAIN MAUSOLEUM STRUCTURE ================= -->
+    <!-- Symmetrical Octagonal Body with Chamfered Corners -->
+    <rect class="wonder-paths" x="302" y="186" width="196" height="84" fill="url(#w7-marble-lit)" stroke="#ceb6d0" stroke-width="1.2"/>
+    <!-- Chamfered Left Corner -->
+    <polygon points="302,186 316,186 302,204" fill="#b099b4"/>
+    <!-- Chamfered Right Corner -->
+    <polygon points="498,186 484,186 498,204" fill="#b099b4"/>
+
+    <!-- FLANKING DOMED CHHATRIS (Side Pavilions on Roof) -->
+    <!-- Left Chhatri -->
+    <g class="wonder-paths">
+      <rect x="338" y="162" width="24" height="24" fill="url(#w7-marble-lit)" stroke="#cbb4cc" stroke-width="0.8"/>
+      <path d="M336,162 Q350,144 364,162 Z" fill="url(#w7-marble-lit)" stroke="#f6ebf8" stroke-width="0.8"/>
+      <line x1="350" y1="144" x2="350" y2="136" stroke="url(#w7-gold-grad)" stroke-width="1.5"/>
+    </g>
+    <!-- Right Chhatri -->
+    <g class="wonder-paths">
+      <rect x="438" y="162" width="24" height="24" fill="url(#w7-marble-lit)" stroke="#cbb4cc" stroke-width="0.8"/>
+      <path d="M436,162 Q450,144 464,162 Z" fill="url(#w7-marble-lit)" stroke="#f6ebf8" stroke-width="0.8"/>
+      <line x1="450" y1="144" x2="450" y2="136" stroke="url(#w7-gold-grad)" stroke-width="1.5"/>
+    </g>
+
+    <!-- THE GLORIOUS BULBOUS ONION DOME (Amrud Dome) -->
+    <!-- Cylindrical Marble Drum (Base of Dome) -->
+    <rect class="wonder-paths" x="366" y="152" width="68" height="34" fill="url(#w7-marble-lit)" stroke="#d8c2da" stroke-width="1"/>
+    <ellipse cx="400" cy="186" rx="34" ry="4" fill="#b49eb8"/>
+
+    <!-- Perfect Bulbous Onion Dome Curve -->
+    <path class="wonder-paths" d="M366,154 C350,130 364,92 400,78 C436,92 450,130 434,154 Z" fill="url(#w7-marble-lit)" stroke="#ffffff" stroke-width="2" filter="url(#w7-dome-glow)"/>
+    <!-- Dome Marble Rib Shadow for 3D Volume -->
+    <path d="M400,78 C424,96 438,128 434,154 C418,138 410,105 400,78 Z" fill="url(#w7-marble-shade)" opacity="0.45"/>
+
+    <!-- Lotus Petal Calyx & Magnificent Gilded Finial with Islamic Crescent -->
+    <g class="wonder-paths">
+      <!-- Lotus Cresting Base -->
+      <path d="M393,82 Q400,73 407,82 Z" fill="url(#w7-gold-grad)"/>
+      <!-- Tall Brass Finial Mast -->
+      <line x1="400" y1="74" x2="400" y2="44" stroke="url(#w7-gold-grad)" stroke-width="2.8"/>
+      <!-- Finial Golden Orbs -->
+      <circle cx="400" cy="58" r="4" fill="url(#w7-gold-grad)"/>
+      <circle cx="400" cy="48" r="2.8" fill="url(#w7-gold-grad)"/>
+      <!-- Upward Pointing Gilded Crescent Moon -->
+      <path d="M395,43 Q400,36 405,43 Q400,39 395,43 Z" fill="url(#w7-gold-grad)" filter="url(#w7-dome-glow)"/>
+      <circle cx="400" cy="42" r="1.5" fill="#fff"/>
+    </g>
+
+    <!-- ================= MONUMENTAL CENTRAL PISHTAQ (GRAND IWAN ARCH) ================= -->
+    <rect class="wonder-paths" x="350" y="196" width="100" height="74" fill="#fcf6fa" stroke="#c0a6c2" stroke-width="1.2"/>
+    <!-- Pietra Dura Calligraphic / Floral Border Frame -->
+    <path d="M354,270 V200 H446 V270" stroke="#b8782a" stroke-width="1.8" fill="none" stroke-dasharray="3,2"/>
+    <path d="M356,270 V202 H444 V270" stroke="#d49248" stroke-width="0.8" fill="none"/>
+
+    <!-- Pointed Iwan Arch Recessed Vault -->
+    <path class="wonder-paths" d="M362,270 V224 Q362,202 400,196 Q438,202 438,224 V270 Z" fill="#240c1e" stroke="#ffcc66" stroke-width="1.8"/>
+    <!-- Muqarnas Honeycomb Vault Transition (Upper Arch) -->
+    <path d="M366,220 Q400,208 434,220" stroke="#d49248" stroke-width="1.2" fill="none"/>
+    <!-- Inner Portal Doorway Screen (Jali Screen) -->
+    <path d="M380,270 V244 Q380,234 400,230 Q420,234 420,244 V270 Z" fill="#10040c"/>
+    <path d="M380,270 V244 Q380,234 400,230 Q420,234 420,244 V270 Z" stroke="#e8b860" stroke-width="0.8" fill="none"/>
+
+    <!-- Flanking Double-Tiered Recessed Iwans (Left Side) -->
+    <path d="M316,226 V208 Q316,200 330,198 Q344,200 344,208 V226 Z" fill="#240c1e" stroke="#caa4cc" stroke-width="0.8"/>
+    <path d="M316,264 V242 Q316,234 330,232 Q344,234 344,242 V264 Z" fill="#240c1e" stroke="#caa4cc" stroke-width="0.8"/>
+
+    <!-- Flanking Double-Tiered Recessed Iwans (Right Side) -->
+    <path d="M456,226 V208 Q456,200 470,198 Q484,200 484,208 V226 Z" fill="#240c1e" stroke="#caa4cc" stroke-width="0.8"/>
+    <path d="M456,264 V242 Q456,234 470,232 Q484,234 484,242 V264 Z" fill="#240c1e" stroke="#caa4cc" stroke-width="0.8"/>
+  </g>
+
+  <!-- FOREGROUND: The Grand Charbagh Garden, Reflecting Pool & Mirrored Reflection -->
+  <g class="layer-fg">
+    <!-- Red Sandstone Walkway Terraces & Flowerbeds -->
+    <polygon points="100,450 700,450 580,282 220,282" fill="#1e0c18" stroke="#4a1c2e" stroke-width="1"/>
+
+    <!-- THE LONG CENTRAL REFLECTING POOL (Al-Hawd al-Kawthar) -->
+    <polygon class="wonder-paths" points="296,282 504,282 568,450 232,450" fill="url(#w7-pool-water)" stroke="#ffb866" stroke-width="1.5"/>
+    <!-- Marble Pool Kerbing / Edges with Delicate Inlays -->
+    <line x1="296" y1="282" x2="232" y2="450" stroke="#f6ebf8" stroke-width="3.5"/>
+    <line x1="504" y1="282" x2="568" y2="450" stroke="#f6ebf8" stroke-width="3.5"/>
+
+    <!-- ================= HYPER-REALISTIC MIRRORED REFLECTION IN WATER ================= -->
+    <!-- Flipped, Soft-Glow & Shimmering Ripple Reflection of the Taj Mahal -->
+    <g transform="translate(0, 564) scale(1, -1)" opacity="0.38">
+      <!-- Reflected Main Body -->
+      <rect x="318" y="186" width="164" height="74" fill="url(#w7-marble-lit)"/>
+      <rect x="362" y="200" width="76" height="60" fill="#240c1e"/>
+      <!-- Reflected Central Onion Dome -->
+      <path d="M366,154 C352,130 366,92 400,78 C434,92 448,130 434,154 Z" fill="url(#w7-marble-lit)"/>
+      <line x1="400" y1="74" x2="400" y2="46" stroke="url(#w7-gold-grad)" stroke-width="2.5"/>
+      <!-- Reflected Minarets -->
+      <polygon points="270,270 282,270 280,152 272,152" fill="url(#w7-marble-lit)"/>
+      <polygon points="518,270 530,270 528,152 520,152" fill="url(#w7-marble-lit)"/>
+    </g>
+
+    <!-- Water Ripple Bands across the Pool reflecting the golden sky -->
+    <g opacity="0.5">
+      <ellipse cx="400" cy="300" rx="45" ry="3.5" fill="none" stroke="#ffddaa" stroke-width="1"/>
+      <ellipse cx="400" cy="335" rx="70" ry="4.5" fill="none" stroke="#ffe099" stroke-width="1.2"/>
+      <ellipse cx="400" cy="375" rx="100" ry="6" fill="none" stroke="#ffd080" stroke-width="1.4"/>
+      <ellipse cx="400" cy="420" rx="135" ry="8" fill="none" stroke="#ffaa44" stroke-width="1.6"/>
+    </g>
+
+    <!-- Floating Festival Diya Lamps Drifting in the Pool -->
+    <g filter="url(#w7-dome-glow)">
+      <circle cx="360" cy="325" r="3" fill="#ffdd44"/><ellipse cx="360" cy="327" rx="5" ry="2" fill="#b35900"/>
+      <circle cx="440" cy="350" r="3.5" fill="#ffdd44"/><ellipse cx="440" cy="352" rx="6" ry="2.2" fill="#b35900"/>
+      <circle cx="380" cy="390" r="4" fill="#ffee66"/><ellipse cx="380" cy="393" rx="7" ry="2.5" fill="#b35900"/>
+      <circle cx="430" cy="425" r="4.5" fill="#ffee66"/><ellipse cx="430" cy="428" rx="8" ry="3" fill="#b35900"/>
+    </g>
+
+    <!-- ================= CONICAL ITALIAN CYPRESS TREES (SARV) ================= -->
+    <!-- Authentic garden perspective: Trees grow taller as they get closer to viewer -->
+
+    <!-- Left Cypress Avenue -->
+    <g class="wonder-paths">
+      <!-- Tree 1 (Farthest, small) -->
+      <path d="M255,290 C251,280 255,264 257,252 C259,264 263,280 259,290 Z" fill="url(#w7-cypress-grad)"/>
+      <!-- Tree 2 -->
+      <path d="M236,325 C230,305 236,278 240,262 C244,278 250,305 244,325 Z" fill="url(#w7-cypress-grad)"/>
+      <!-- Tree 3 -->
+      <path d="M212,370 C204,342 212,302 218,280 C224,302 232,342 224,370 Z" fill="url(#w7-cypress-grad)"/>
+      <!-- Tree 4 (Foremost, grand) -->
+      <path d="M182,430 C168,388 182,330 190,298 C198,330 212,388 198,430 Z" fill="url(#w7-cypress-grad)"/>
+    </g>
+
+    <!-- Right Cypress Avenue -->
+    <g class="wonder-paths">
+      <!-- Tree 1 (Farthest, small) -->
+      <path d="M545,290 C541,280 545,264 547,252 C549,264 553,280 549,290 Z" fill="url(#w7-cypress-grad)"/>
+      <!-- Tree 2 -->
+      <path d="M564,325 C558,305 564,278 568,262 C572,278 578,305 572,325 Z" fill="url(#w7-cypress-grad)"/>
+      <!-- Tree 3 -->
+      <path d="M588,370 C580,342 588,302 594,280 C600,302 608,342 600,370 Z" fill="url(#w7-cypress-grad)"/>
+      <!-- Tree 4 (Foremost, grand) -->
+      <path d="M618,430 C604,388 618,330 626,298 C634,330 648,388 634,430 Z" fill="url(#w7-cypress-grad)"/>
+    </g>
+
+    <!-- Glowing Festival Diyas along the marble water promenade -->
+    <g filter="url(#w7-dome-glow)">
+      <circle cx="270" cy="284" r="2.5" fill="#ffdd55"/>
+      <circle cx="530" cy="284" r="2.5" fill="#ffdd55"/>
+      <circle cx="250" cy="342" r="3" fill="#ffdd55"/>
+      <circle cx="550" cy="342" r="3" fill="#ffdd55"/>
+      <circle cx="225" cy="412" r="3.8" fill="#ffdd55"/>
+      <circle cx="575" cy="412" r="3.8" fill="#ffdd55"/>
+    </g>
+  </g>
+</g>
+      </svg>
+    </div>
+  </div>
+  <div id="stage-scrim" aria-hidden="true"></div>
+
+  <!-- CINEMATIC CELEBRATION OVERLAY & WISHES -->
+  <main id="celebration-overlay">
+    <div class="celebration-title-wrap">
+      <h1 class="main-title">Happy Diwali</h1>
+      <p class="sub-title">Festival of Eternal Light</p>
+    </div>
+
+    <!-- Wishes Carousel -->
+    <div id="wishes-carousel" aria-live="polite" aria-atomic="true"></div>
+  </main>
+
+  <!-- OPENING INTRO SCREEN -->
+  <div id="intro-screen" role="dialog" aria-modal="true" aria-label="Welcome screen">
+    <svg class="intro-diya" viewBox="0 0 60 75" aria-hidden="true">
+      <defs>
+        <radialGradient id="in-flame-glow" cx="50%" cy="30%" r="50%">
+          <stop offset="0%" stop-color="rgba(255,220,100,0.85)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+      </defs>
+      <circle cx="30" cy="22" r="22" fill="url(#in-flame-glow)"/>
+      <path d="M30,32 Q37,20 34,9 Q30,1 26,9 Q23,20 30,32Z" fill="#FF9500"/>
+      <path d="M30,32 Q35,23 33,13 Q30,6 27,13 Q25,23 30,32Z" fill="#FFEC80"/>
+      <line x1="30" y1="32" x2="30" y2="42" stroke="#4A3520" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M14,54 Q14,68 30,71 Q46,68 46,54 Q46,45 38,43 L22,43 Q14,45 14,54Z" fill="#CD5C00"/>
+      <ellipse cx="30" cy="43" rx="10" ry="3.5" fill="#8B3E00"/>
+    </svg>
+    <p class="intro-subtitle">Shubh Deepavali</p>
+    <h1 class="intro-title">The Festival of Lights</h1>
+    <p class="intro-desc">A breathtaking celebration beneath the stars at the Taj Mahal, illuminated with festival fireworks and floating lanterns.</p>
+    <button class="start-btn" id="start-btn" autofocus>Begin the Celebration</button>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const WISHES = [
+      "May the celestial glow of Diwali illuminate your home with boundless peace and prosperity.",
+      "Wishing you golden health, joyful laughter, and new beginnings that shine like the stars.",
+      "May Goddess Lakshmi bless your life with abundance and Lord Ganesha remove every obstacle.",
+      "Let the sacred radiance of the Taj Mahal inspire eternal love, harmony, and joy in your heart.",
+      "Sending sweetest blessings for family togetherness, cherished traditions, and festive feasts.",
+      "May your path be guided by courage, truth, and the divine light within your soul.",
+      "Wishing you victories as timeless as the marble domes and moments as sweet as mithai.",
+      "Shubh Deepavali — may the light of wisdom, love, and hope burn brightly forever."
+    ];
+
+    function rand(min, max) { return Math.random() * (max - min) + min; }
+    function randInt(min, max) { return Math.floor(rand(min, max)); }
+    function pick(arr) { return arr[randInt(0, arr.length)]; }
+    function clamp(val, min, max) { return Math.min(Math.max(val, min), max); }
+    function hsl(h, s, l, a) { return a !== undefined ? `hsla(${h}, ${s}%, ${l}%, ${a})` : `hsl(${h}, ${s}%, ${l}%)`; }
+
+    /* ========================================================
+       FLOATING SKY LANTERNS ENGINE
+       ======================================================== */
+    class SkyLanternsEngine {
+      constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.lanterns = [];
+        this.time = 0;
+        this.count = 42;
+        this.init();
+      }
+
+      resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        this.canvas.width = window.innerWidth * dpr;
+        this.canvas.height = window.innerHeight * dpr;
+        this.canvas.style.width = window.innerWidth + 'px';
+        this.canvas.style.height = window.innerHeight + 'px';
+        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      init() {
+        this.lanterns = [];
+        const w = window.innerWidth, h = window.innerHeight;
+        for (let i = 0; i < this.count; i++) {
+          this.lanterns.push(this._createLantern(rand(0, w), rand(0, h * 1.2), true));
+        }
+      }
+
+      _createLantern(x, y, randomizeY) {
+        const depth = rand(0.35, 1.0);
+        return {
+          baseX: x,
+          x: x,
+          y: randomizeY ? y : window.innerHeight + rand(10, 80),
+          vy: (0.35 + rand(0, 0.45)) * depth,
+          scale: (0.65 + depth * 0.75),
+          depth: depth,
+          swayAmp: 14 * depth + rand(4, 12),
+          swayFreq: rand(0.015, 0.035),
+          phase: rand(0, Math.PI * 2),
+          hue: pick([35, 42, 48, 25, 15]),
+          flickerPhase: rand(0, Math.PI * 2),
+          flickerSpeed: rand(0.08, 0.18),
+          alpha: (0.55 + depth * 0.45)
+        };
+      }
+
+      update() {
+        this.time += 1;
+        const w = window.innerWidth, h = window.innerHeight;
+        for (let i = 0; i < this.lanterns.length; i++) {
+          const l = this.lanterns[i];
+          l.y -= l.vy;
+          l.x = l.baseX + Math.sin(this.time * l.swayFreq + l.phase) * l.swayAmp;
+          l.flickerPhase += l.flickerSpeed;
+
+          if (l.y < -60) {
+            this.lanterns[i] = this._createLantern(rand(0, w), h + rand(10, 60), false);
+          }
+        }
+      }
+
+      draw() {
+        const ctx = this.ctx;
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        for (let i = 0; i < this.lanterns.length; i++) {
+          const l = this.lanterns[i];
+          const s = l.scale;
+          const flick = 0.85 + 0.15 * Math.sin(l.flickerPhase);
+          const w = 18 * s;
+          const h = 26 * s;
+
+          ctx.save();
+          ctx.translate(l.x, l.y);
+
+          // 1. Soft Warm Radial Halo
+          const glowR = Math.max(12, 32 * s);
+          const glowGrad = ctx.createRadialGradient(0, h * 0.6, 0, 0, h * 0.6, glowR);
+          glowGrad.addColorStop(0, `hsla(${l.hue}, 100%, 75%, ${0.55 * l.alpha * flick})`);
+          glowGrad.addColorStop(0.5, `hsla(${l.hue - 10}, 100%, 55%, ${0.22 * l.alpha})`);
+          glowGrad.addColorStop(1, 'transparent');
+          ctx.fillStyle = glowGrad;
+          ctx.beginPath();
+          ctx.arc(0, h * 0.6, glowR, 0, Math.PI * 2);
+          ctx.fill();
+
+          // 2. Paper Lantern Trapezoid Body
+          const topW = w * 0.72;
+          const botW = w;
+          ctx.beginPath();
+          ctx.moveTo(-topW / 2, -h / 2);
+          ctx.lineTo(topW / 2, -h / 2);
+          ctx.lineTo(botW / 2, h / 2);
+          ctx.lineTo(-botW / 2, h / 2);
+          ctx.closePath();
+
+          const bodyGrad = ctx.createLinearGradient(0, -h / 2, 0, h / 2);
+          bodyGrad.addColorStop(0, `hsla(${l.hue - 8}, 85%, 45%, ${0.65 * l.alpha})`);
+          bodyGrad.addColorStop(0.5, `hsla(${l.hue}, 95%, 62%, ${0.85 * l.alpha * flick})`);
+          bodyGrad.addColorStop(0.85, `hsla(${l.hue + 8}, 100%, 75%, ${0.95 * l.alpha * flick})`);
+          bodyGrad.addColorStop(1, `hsla(${l.hue - 15}, 90%, 50%, ${0.75 * l.alpha})`);
+          ctx.fillStyle = bodyGrad;
+          ctx.fill();
+
+          ctx.strokeStyle = `hsla(${l.hue - 20}, 80%, 30%, ${0.7 * l.alpha})`;
+          ctx.lineWidth = Math.max(0.6, 0.8 * s);
+          ctx.stroke();
+
+          // 3. Bamboo Base Ring
+          ctx.fillStyle = `rgba(50, 20, 10, ${0.8 * l.alpha})`;
+          ctx.fillRect(-botW / 2 - 1, h / 2 - 1.5, botW + 2, 3 * s);
+
+          // 4. Intense Core Flame
+          const flameR = Math.max(2, 4.5 * s);
+          ctx.fillStyle = `rgba(255, 255, 230, ${0.95 * l.alpha * flick})`;
+          ctx.beginPath();
+          ctx.arc(0, h * 0.42, flameR, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.restore();
+        }
+      }
+    }
+
+    /* ========================================================
+       REALISTIC WEB AUDIO SYNTHESIZER
+       ======================================================== */
+    class SoundEngine {
+      constructor() {
+        this.ctx = null;
+        this.masterGain = null;
+        this.compressor = null;
+      }
+
+      init() {
+        if (this.ctx) return;
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        this.ctx = new AudioCtx();
+
+        this.compressor = this.ctx.createDynamicsCompressor();
+        this.compressor.threshold.setValueAtTime(-14, this.ctx.currentTime);
+        this.compressor.knee.setValueAtTime(30, this.ctx.currentTime);
+        this.compressor.ratio.setValueAtTime(8, this.ctx.currentTime);
+        this.compressor.attack.setValueAtTime(0.003, this.ctx.currentTime);
+        this.compressor.release.setValueAtTime(0.25, this.ctx.currentTime);
+
+        this.masterGain = this.ctx.createGain();
+        this.masterGain.gain.setValueAtTime(0.72, this.ctx.currentTime);
+
+        this.compressor.connect(this.masterGain);
+        this.masterGain.connect(this.ctx.destination);
+      }
+
+      resume() {
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      playWhistle(x, duration) {
+        this.init();
+        const ctx = this.ctx;
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const dur = duration || 0.85;
+
+        // Mortar launch thump
+        const launchOsc = ctx.createOscillator();
+        launchOsc.type = 'sine';
+        launchOsc.frequency.setValueAtTime(95, now);
+        launchOsc.frequency.exponentialRampToValueAtTime(32, now + 0.18);
+        const launchGain = ctx.createGain();
+        launchGain.gain.setValueAtTime(0.35, now);
+        launchGain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+        launchOsc.connect(launchGain);
+        launchGain.connect(this.compressor);
+        launchOsc.start(now);
+        launchOsc.stop(now + 0.19);
+
+        // Rising rocket whistle
+        const osc = ctx.createOscillator();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(420, now);
+        osc.frequency.exponentialRampToValueAtTime(1480, now + dur);
+
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(0.18, now + dur * 0.4);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + dur);
+
+        if (ctx.createStereoPanner) {
+          const panner = ctx.createStereoPanner();
+          const pan = clamp((x / (window.innerWidth || 1000)) * 2 - 1, -0.9, 0.9);
+          panner.pan.setValueAtTime(pan, now);
+          osc.connect(gain);
+          gain.connect(panner);
+          panner.connect(this.compressor);
+        } else {
+          osc.connect(gain);
+          gain.connect(this.compressor);
+        }
+
+        osc.start(now);
+        osc.stop(now + dur);
+      }
+
+      playExplosion(x, size) {
+        this.init();
+        const ctx = this.ctx;
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const sz = size || 1;
+        const panVal = clamp((x / (window.innerWidth || 1000)) * 2 - 1, -0.9, 0.9);
+
+        // 1. Instantaneous Supersonic Crack
+        const snapLen = Math.floor(ctx.sampleRate * 0.035);
+        const snapBuf = ctx.createBuffer(1, snapLen, ctx.sampleRate);
+        const snapData = snapBuf.getChannelData(0);
+        for (let i = 0; i < snapLen; i++) {
+          snapData[i] = (Math.random() * 2 - 1) * Math.exp(-i / (snapLen * 0.15));
+        }
+        const snapSrc = ctx.createBufferSource();
+        snapSrc.buffer = snapBuf;
+        const snapFilter = ctx.createBiquadFilter();
+        snapFilter.type = 'highpass';
+        snapFilter.frequency.value = 2400;
+        const snapGain = ctx.createGain();
+        snapGain.gain.setValueAtTime(0.48 * sz, now);
+        snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+        snapSrc.connect(snapFilter);
+        snapFilter.connect(snapGain);
+        snapGain.connect(this.compressor);
+        snapSrc.start(now);
+
+        // 2. Heavy Sub-Bass Boom (175Hz -> 32Hz drop)
+        const subOsc = ctx.createOscillator();
+        subOsc.type = 'sine';
+        subOsc.frequency.setValueAtTime(175 * (1.1 - sz * 0.12), now);
+        subOsc.frequency.exponentialRampToValueAtTime(32, now + 0.38);
+        const subGain = ctx.createGain();
+        subGain.gain.setValueAtTime(0.72 * sz, now);
+        subGain.gain.exponentialRampToValueAtTime(0.001, now + 0.52);
+        subOsc.connect(subGain);
+        subGain.connect(this.compressor);
+        subOsc.start(now);
+        subOsc.stop(now + 0.54);
+
+        // 3. Low-Pass Rumbling Reverb
+        const rumbleLen = Math.floor(ctx.sampleRate * 0.95);
+        const rumbleBuf = ctx.createBuffer(1, rumbleLen, ctx.sampleRate);
+        const rumbleData = rumbleBuf.getChannelData(0);
+        for (let i = 0; i < rumbleLen; i++) {
+          rumbleData[i] = (Math.random() * 2 - 1) * Math.exp(-i / (rumbleLen * 0.28));
+        }
+        const rumbleSrc = ctx.createBufferSource();
+        rumbleSrc.buffer = rumbleBuf;
+        const rumbleFilter = ctx.createBiquadFilter();
+        rumbleFilter.type = 'lowpass';
+        rumbleFilter.frequency.setValueAtTime(560, now);
+        rumbleFilter.frequency.exponentialRampToValueAtTime(110, now + 0.9);
+        const rumbleGain = ctx.createGain();
+        rumbleGain.gain.setValueAtTime(0.55 * sz, now);
+        rumbleGain.gain.exponentialRampToValueAtTime(0.001, now + 0.98);
+
+        if (ctx.createStereoPanner) {
+          const panner = ctx.createStereoPanner();
+          panner.pan.setValueAtTime(panVal, now);
+          rumbleGain.connect(panner);
+          panner.connect(this.compressor);
+        } else {
+          rumbleGain.connect(this.compressor);
+        }
+        rumbleSrc.connect(rumbleFilter);
+        rumbleFilter.connect(rumbleGain);
+        rumbleSrc.start(now);
+
+        // 4. Delayed Crackles
+        const popCount = randInt(4, 7);
+        for (let i = 0; i < popCount; i++) {
+          const delay = 0.35 + rand(0, 0.65);
+          setTimeout(() => {
+            this.playCrackle(x + rand(-80, 80));
+          }, delay * 1000);
+        }
+      }
+
+      playCrackle(x) {
+        this.init();
+        const ctx = this.ctx;
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const dur = rand(0.012, 0.024);
+
+        const buf = ctx.createBuffer(1, Math.floor(ctx.sampleRate * dur), ctx.sampleRate);
+        const data = buf.getChannelData(0);
+        for (let i = 0; i < data.length; i++) {
+          data[i] = (Math.random() * 2 - 1) * (1 - i / data.length);
+        }
+        const src = ctx.createBufferSource();
+        src.buffer = buf;
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'highpass';
+        filter.frequency.value = rand(2200, 4800);
+
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(rand(0.08, 0.22), now);
+
+        if (ctx.createStereoPanner) {
+          const panner = ctx.createStereoPanner();
+          panner.pan.setValueAtTime(clamp((x / (window.innerWidth || 1000)) * 2 - 1, -0.9, 0.9), now);
+          src.connect(filter);
+          filter.connect(gain);
+          gain.connect(panner);
+          panner.connect(this.compressor);
+        } else {
+          src.connect(filter);
+          filter.connect(gain);
+          gain.connect(this.compressor);
+        }
+
+        src.start(now);
+      }
+
+      playTempleBell() {
+        this.init();
+        const ctx = this.ctx;
+        if (!ctx) return;
+        const now = ctx.currentTime;
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, now); // D5
+        osc.frequency.exponentialRampToValueAtTime(584, now + 4.8);
+        gain.gain.setValueAtTime(0.35, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 4.8);
+
+        osc.connect(gain);
+        gain.connect(this.compressor);
+        osc.start(now);
+        osc.stop(now + 5.0);
+      }
+
+      playSitarPluck() {
+        this.init();
+        const ctx = this.ctx;
+        if (!ctx) return;
+        const now = ctx.currentTime;
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(293.66, now); // D4
+        osc.frequency.exponentialRampToValueAtTime(587.33, now + 0.16);
+        gain.gain.setValueAtTime(0.24, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 3.2);
+
+        osc.connect(gain);
+        gain.connect(this.compressor);
+        osc.start(now);
+        osc.stop(now + 3.3);
+      }
+    }
+
+    /* ========================================================
+       HYPER-REALISTIC SKYSHOTS & FIREWORKS ENGINE
+       ======================================================== */
+    class Particle {
+      constructor(x, y, vx, vy, hue, sat, lit, size, life, type, targetHue) {
+        this.x = x;
+        this.y = y;
+        this.prevX = x;
+        this.prevY = y;
+        this.vx = vx;
+        this.vy = vy;
+        this.hue = hue;
+        this.targetHue = targetHue;
+        this.sat = sat;
+        this.lit = lit;
+        this.size = size;
+        this.life = life;
+        this.maxLife = life;
+        this.type = type;
+        this.alpha = 1;
+
+        const physics = {
+          trail:    { g: 0.045, f: 0.965 },
+          flash:    { g: 0, f: 1 },
+          peony:    { g: 0.052, f: 0.948 },
+          dahlia:   { g: 0.048, f: 0.958 },
+          ring:     { g: 0.045, f: 0.952 },
+          willow:   { g: 0.068, f: 0.968 },
+          palm:     { g: 0.062, f: 0.958 },
+          crossette:{ g: 0.048, f: 0.955 },
+          crackle:  { g: 0.05, f: 0.952 },
+          heart:    { g: 0.046, f: 0.952 },
+          diya:     { g: 0.045, f: 0.952 },
+          twinkle:  { g: 0.032, f: 0.968 }
+        };
+        const p = physics[type] || physics.peony;
+        this.gravity = p.g;
+        this.friction = p.f;
+        this.twinklePhase = rand(0, Math.PI * 2);
+        this.twinkleSpd = rand(0.14, 0.32);
+        this.splitDone = false;
+      }
+
+      update(engine) {
+        this.prevX = this.x;
+        this.prevY = this.y;
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vx *= this.friction;
+        this.vy = this.vy * this.friction + this.gravity;
+        this.life--;
+        this.alpha = clamp(this.life / this.maxLife, 0, 1);
+
+        // Smooth color transition
+        if (this.targetHue !== undefined && this.life < this.maxLife * 0.65) {
+          this.hue += (this.targetHue - this.hue) * 0.08;
+        }
+
+        // Crossette star split into 4 cross sparks
+        if (this.type === 'crossette' && !this.splitDone && this.life < this.maxLife * 0.45 && engine) {
+          this.splitDone = true;
+          const crossSpeed = rand(2.2, 3.8);
+          const offsets = [[crossSpeed, 0], [-crossSpeed, 0], [0, crossSpeed], [0, -crossSpeed]];
+          for (const [ox, oy] of offsets) {
+            engine.particles.push(new Particle(
+              this.x, this.y, this.vx * 0.3 + ox, this.vy * 0.3 + oy,
+              this.targetHue || this.hue, 100, 85, this.size * 0.8, randInt(25, 42), 'twinkle'
+            ));
+          }
+          if (engine.sound) engine.sound.playCrackle(this.x);
+        }
+
+        // Willow secondary glitter dropouts
+        if (this.type === 'willow' && Math.random() < 0.14 && engine) {
+          engine.particles.push(new Particle(
+            this.x + rand(-1, 1), this.y + rand(-1, 1), rand(-0.2, 0.2), rand(0.2, 0.8),
+            42, 90, 80, rand(1.0, 1.8), randInt(18, 30), 'twinkle'
+          ));
+        }
+      }
+
+      draw(ctx) {
+        if (this.alpha <= 0) return;
+        let a = this.alpha;
+
+        if (this.type === 'flash') {
+          const prog = 1 - this.life / this.maxLife;
+          const r = this.size * (1 + prog * 1.8);
+          ctx.globalAlpha = a * (1 - prog) * 0.5;
+          const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, r);
+          grad.addColorStop(0, hsl(this.hue, 20, 98, 0.85));
+          grad.addColorStop(0.35, hsl(this.hue, this.sat, this.lit, 0.25));
+          grad.addColorStop(1, 'transparent');
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
+          ctx.fill();
+          return;
+        }
+
+        if (this.type === 'twinkle') {
+          this.twinklePhase += this.twinkleSpd;
+          a *= 0.3 + 0.7 * Math.abs(Math.sin(this.twinklePhase));
+        }
+
+        const r = Math.max(0.5, this.size * (0.35 + 0.65 * this.alpha));
+        ctx.globalAlpha = a;
+
+        // Motion-blurred luminous spark streak (connect previous to current coordinates)
+        if (this.type !== 'flash') {
+          const distSq = (this.x - this.prevX) ** 2 + (this.y - this.prevY) ** 2;
+          if (distSq > 1) {
+            ctx.strokeStyle = hsl(this.hue, this.sat, this.lit, a * 0.7);
+            ctx.lineWidth = Math.max(1, r * 1.4);
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(this.prevX, this.prevY);
+            ctx.lineTo(this.x, this.y);
+            ctx.stroke();
+          }
+        }
+
+        // Outer Glow Halo
+        if (r > 1 && this.type !== 'trail') {
+          ctx.fillStyle = hsl(this.hue, this.sat, this.lit, 0.18);
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, r * 2.8, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // Burning Incandescent Pearl
+        ctx.fillStyle = hsl(this.hue, this.sat, Math.min(95, this.lit + 12), a);
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
+        ctx.fill();
+
+        // White-hot core
+        if (r > 1.3 && a > 0.4) {
+          ctx.fillStyle = `rgba(255, 255, 250, ${a * 0.9})`;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, r * 0.48, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+
+    class Firework {
+      constructor(x, targetY, burstType, hues, sound, sizeMul) {
+        this.x = x;
+        this.y = window.innerHeight + 10;
+        this.targetY = targetY;
+        this.burstType = burstType;
+        this.hues = hues;
+        this.sound = sound;
+        this.sizeMul = sizeMul || 1;
+        this.exploded = false;
+        this.particles = [];
+        this.trailTimer = 0;
+        this.done = false;
+
+        const dist = this.y - targetY;
+        this.vy = -(6.2 + rand(0, 3.2));
+        this.vx = rand(-0.7, 0.7);
+
+        this.hue = pick(this.hues);
+        this.targetHue = pick(this.hues.filter(h => h !== this.hue)) || (this.hue + 140) % 360;
+        this.sat = 88 + rand(0, 12);
+        this.lit = 55 + rand(0, 15);
+
+        const frames = dist / Math.abs(this.vy);
+        const wDur = clamp((frames / 60) * 0.85, 0.3, 1.4);
+        sound.playWhistle(x, wDur);
+      }
+
+      update(engine) {
+        if (!this.exploded) {
+          this.x += this.vx;
+          this.y += this.vy;
+          this.vy += 0.045;
+          this.trailTimer++;
+
+          // Dense fiery rocket spark column
+          this.particles.push(new Particle(
+            this.x + rand(-1.2, 1.2), this.y, rand(-0.4, 0.4), rand(0.8, 2.0),
+            40, 100, 80, rand(1.2, 2.4), randInt(14, 22), 'trail'
+          ));
+          if (this.trailTimer % 2 === 0) {
+            this.particles.push(new Particle(
+              this.x, this.y, rand(-0.8, 0.8), rand(1.5, 3.2),
+              22, 100, 60, rand(1.0, 1.8), randInt(18, 28), 'trail'
+            ));
+          }
+
+          if (this.vy >= -0.5 || this.y <= this.targetY) {
+            this._explode(engine);
+          }
+        }
+
+        for (let i = this.particles.length - 1; i >= 0; i--) {
+          this.particles[i].update(engine);
+          if (this.particles[i].life <= 0) this.particles.splice(i, 1);
+        }
+        if (this.exploded && this.particles.length === 0) this.done = true;
+      }
+
+      _explode(engine) {
+        this.exploded = true;
+        this.sound.playExplosion(this.x, clamp(this.sizeMul, 0.5, 1.5));
+
+        // Tremendous Sky Illumination Flash
+        const flashRadius = Math.min(window.innerWidth, window.innerHeight) * 0.48 * this.sizeMul;
+        this.particles.push(new Particle(this.x, this.y, 0, 0, this.hue, 35, 96, flashRadius, 14, 'flash'));
+
+        const count = Math.min(engine ? engine.particleCap : 120, Math.floor(100 * this.sizeMul));
+
+        switch (this.burstType) {
+          case 'ring': this._burstRing(count); break;
+          case 'willow': this._burstWillow(count); break;
+          case 'palm': this._burstPalm(count); break;
+          case 'crossette': this._burstCrossette(count); break;
+          case 'crackle': this._burstCrackle(count); break;
+          case 'heart': this._burstHeart(count); break;
+          case 'diya': this._burstDiya(count); break;
+          case 'dahlia': this._burstDahlia(count); break;
+          default: this._burstPeony(count); break;
+        }
+
+        // Sizzling Twinkling Sparks
+        const twinkles = Math.floor(count * 0.28);
+        for (let i = 0; i < twinkles; i++) {
+          const a = rand(0, Math.PI * 2), s = rand(0.5, 3.2);
+          this.particles.push(new Particle(
+            this.x, this.y, Math.cos(a) * s, Math.sin(a) * s,
+            this.hue + rand(-10, 10), 100, 88, rand(1.2, 2.5), randInt(35, 65), 'twinkle'
+          ));
+        }
+      }
+
+      _burstPeony(count) {
+        for (let i = 0; i < count; i++) {
+          const a = rand(0, Math.PI * 2);
+          const spd = rand(2.5, 8.8) * this.sizeMul;
+          this.particles.push(new Particle(
+            this.x, this.y, Math.cos(a) * spd, Math.sin(a) * spd,
+            this.hue, this.sat, this.lit, rand(1.6, 2.8), randInt(48, 72), 'peony', this.targetHue
+          ));
+        }
+      }
+
+      _burstDahlia(count) {
+        for (let i = 0; i < count; i++) {
+          const a = rand(0, Math.PI * 2);
+          const spd = rand(3.5, 9.5) * this.sizeMul;
+          this.particles.push(new Particle(
+            this.x, this.y, Math.cos(a) * spd, Math.sin(a) * spd,
+            this.hue, 100, 68, rand(2.2, 3.4), randInt(55, 80), 'dahlia'
+          ));
+        }
+      }
+
+      _burstCrossette(count) {
+        const mainCount = Math.floor(count * 0.35);
+        for (let i = 0; i < mainCount; i++) {
+          const a = (i / mainCount) * Math.PI * 2 + rand(-0.1, 0.1);
+          const spd = rand(4.5, 8.2) * this.sizeMul;
+          this.particles.push(new Particle(
+            this.x, this.y, Math.cos(a) * spd, Math.sin(a) * spd,
+            this.hue, 95, 68, rand(2.0, 3.0), randInt(40, 60), 'crossette', this.targetHue
+          ));
+        }
+      }
+
+      _burstRing(count) {
+        for (let i = 0; i < count; i++) {
+          const a = (i / count) * Math.PI * 2;
+          const spd = (5.8 + rand(-0.3, 0.3)) * this.sizeMul;
+          this.particles.push(new Particle(
+            this.x, this.y, Math.cos(a) * spd, Math.sin(a) * spd,
+            this.hue, 95, 65, 2.2, randInt(48, 68), 'ring'
+          ));
+        }
+      }
+
+      _burstWillow(count) {
+        for (let i = 0; i < count; i++) {
+          const a = rand(0, Math.PI * 2);
+          const spd = rand(1.8, 6.4) * this.sizeMul;
+          this.particles.push(new Particle(
+            this.x, this.y, Math.cos(a) * spd, Math.sin(a) * spd,
+            42, 95, 65, rand(1.8, 2.8), randInt(80, 115), 'willow'
+          ));
+        }
+      }
+
+      _burstPalm(count) {
+        const arms = 12;
+        for (let i = 0; i < count; i++) {
+          const arm = i % arms;
+          const a = (arm / arms) * Math.PI * 2 + rand(-0.06, 0.06);
+          const spd = rand(3.2, 8.2) * this.sizeMul;
+          this.particles.push(new Particle(
+            this.x, this.y, Math.cos(a) * spd, Math.sin(a) * spd,
+            pick(this.hues), 95, 65, rand(1.8, 3.0), randInt(55, 82), 'palm'
+          ));
+        }
+      }
+
+      _burstCrackle(count) {
+        for (let i = 0; i < count; i++) {
+          const a = rand(0, Math.PI * 2);
+          const spd = rand(1.5, 7.2) * this.sizeMul;
+          this.particles.push(new Particle(
+            this.x, this.y, Math.cos(a) * spd, Math.sin(a) * spd,
+            38, 100, 75, rand(1.4, 2.6), randInt(40, 65), 'crackle'
+          ));
+        }
+      }
+
+      _burstHeart(count) {
+        for (let i = 0; i < count; i++) {
+          const t = (i / count) * Math.PI * 2;
+          const hx = 16 * Math.pow(Math.sin(t), 3);
+          const hy = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+          const scale = 0.38 * this.sizeMul;
+          this.particles.push(new Particle(
+            this.x, this.y, hx * scale + rand(-0.2, 0.2), hy * scale + rand(-0.2, 0.2),
+            345, 95, 62, 2.2, randInt(55, 75), 'heart'
+          ));
+        }
+      }
+
+      _burstDiya(count) {
+        const flameCount = Math.floor(count * 0.4);
+        const baseCount = count - flameCount;
+        for (let i = 0; i < flameCount; i++) {
+          const a = -Math.PI / 2 + rand(-0.6, 0.6);
+          const s = rand(2.5, 6.5) * this.sizeMul;
+          this.particles.push(new Particle(
+            this.x, this.y, Math.cos(a) * s * 0.7, Math.sin(a) * s,
+            42, 100, 70, 2.4, randInt(50, 75), 'diya'
+          ));
+        }
+        for (let i = 0; i < baseCount; i++) {
+          const a = Math.PI * (i / baseCount);
+          const spd = 4.8 * this.sizeMul;
+          this.particles.push(new Particle(
+            this.x, this.y, Math.cos(a) * spd * 1.5, Math.sin(a) * spd * 0.5,
+            24, 90, 52, 2.2, randInt(50, 75), 'diya'
+          ));
+        }
+      }
+
+      draw(ctx) {
+        if (!this.exploded) {
+          ctx.save();
+          ctx.fillStyle = '#ffffff';
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, 2.2, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = 'rgba(255, 220, 80, 0.85)';
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, 5.0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        } else {
+          // Mirror reflection of bursting firework in Charbagh water pool
+          if (this.y < window.innerHeight * 0.55) {
+            const refY = window.innerHeight * 0.88 - (this.y - window.innerHeight * 0.55) * 0.25;
+            ctx.save();
+            ctx.globalAlpha = 0.16 * this.sizeMul;
+            const refR = 140 * this.sizeMul;
+            const refGrad = ctx.createRadialGradient(this.x, refY, 0, this.x, refY, refR);
+            refGrad.addColorStop(0, hsl(this.hue, this.sat, 70, 0.4));
+            refGrad.addColorStop(1, 'transparent');
+            ctx.fillStyle = refGrad;
+            ctx.beginPath();
+            ctx.arc(this.x, refY, refR, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+        }
+
+        for (const p of this.particles) p.draw(ctx);
+      }
+    }
+
+    class FireworksEngine {
+      constructor(canvas, sound) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.sound = sound;
+        this.fireworks = [];
+        this.particles = []; // Shared secondary particles (e.g. crossette splits)
+        this.paletteHues = [35, 45, 15, 340, 180, 280];
+        this.particleCap = 130;
+        this._calcCap();
+      }
+
+      _calcCap() {
+        const area = window.innerWidth * window.innerHeight;
+        this.particleCap = area < 320000 ? 65 : area < 650000 ? 100 : 140;
+      }
+
+      resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        this.canvas.width = window.innerWidth * dpr;
+        this.canvas.height = window.innerHeight * dpr;
+        this.canvas.style.width = window.innerWidth + 'px';
+        this.canvas.style.height = window.innerHeight + 'px';
+        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        this._calcCap();
+      }
+
+      launch(x, y, type, sizeMul) {
+        if (REDUCED_MOTION) return;
+        const tx = x || rand(window.innerWidth * 0.12, window.innerWidth * 0.88);
+        const ty = y || rand(window.innerHeight * 0.08, window.innerHeight * 0.42);
+        const bt = type || pick(['willow', 'peony', 'dahlia', 'crossette', 'palm', 'heart', 'diya']);
+        this.fireworks.push(new Firework(tx, ty, bt, this.paletteHues, this.sound, sizeMul || 1));
+      }
+
+      launchSalvo(count, types, sizeMul) {
+        if (REDUCED_MOTION) return;
+        for (let i = 0; i < count; i++) {
+          setTimeout(() => {
+            const bt = types ? pick(types) : null;
+            this.launch(null, null, bt, sizeMul);
+          }, i * rand(140, 280));
+        }
+      }
+
+      update() {
+        if (Math.random() < 0.048) {
+          this.launch();
+        }
+        for (let i = this.fireworks.length - 1; i >= 0; i--) {
+          this.fireworks[i].update(this);
+          if (this.fireworks[i].done) this.fireworks.splice(i, 1);
+        }
+        for (let i = this.particles.length - 1; i >= 0; i--) {
+          this.particles[i].update(this);
+          if (this.particles[i].life <= 0) this.particles.splice(i, 1);
+        }
+      }
+
+      draw() {
+        const ctx = this.ctx;
+        ctx.save();
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.22)';
+        ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+        ctx.globalCompositeOperation = 'lighter';
+        for (const fw of this.fireworks) fw.draw(ctx);
+        for (const p of this.particles) p.draw(ctx);
+        ctx.restore();
+      }
+    }
+
+    /* ========================================================
+       CELEBRATION CONTROLLER
+       ======================================================== */
+    class CelebrationController {
+      constructor() {
+        this.canvas = document.getElementById('fireworks-canvas');
+        this.lanternsCanvas = document.getElementById('lanterns-canvas');
+        this.sound = new SoundEngine();
+        this.fireworks = new FireworksEngine(this.canvas, this.sound);
+        this.lanterns = new SkyLanternsEngine(this.lanternsCanvas);
+
+        this.introScreen = document.getElementById('intro-screen');
+        this.startBtn = document.getElementById('start-btn');
+        this.wishesCarousel = document.getElementById('wishes-carousel');
+
+        this.started = false;
+        this.wishInterval = null;
+        this.currentWishIdx = 0;
+        this.isPaused = false;
+
+        this._setupWishes();
+        this._bindEvents();
+        this.fireworks.resize();
+        this.lanterns.resize();
+
+        this._tick = this._tick.bind(this);
+        requestAnimationFrame(this._tick);
+      }
+
+      _setupWishes() {
+        this.wishesCarousel.innerHTML = '';
+        this.wishNodes = [];
+        WISHES.forEach((wish, i) => {
+          const p = document.createElement('p');
+          p.className = 'wish-text' + (i === 0 ? ' active' : '');
+          p.textContent = wish;
+          this.wishesCarousel.appendChild(p);
+          this.wishNodes.push(p);
+        });
+      }
+
+      _bindEvents() {
+        document.addEventListener('keydown', e => {
+          if (e.key === 'f' || e.key === 'F') {
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+              if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+              } else if (document.exitFullscreen) {
+                document.exitFullscreen().catch(() => {});
+              }
+            }
+          }
+        });
+
+        this.startBtn.addEventListener('click', () => this.startCelebration());
+        this.startBtn.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.startCelebration();
+          }
+        });
+
+        document.addEventListener('click', e => {
+          if (!this.started) return;
+          if (e.target.closest('button')) return;
+          this.fireworks.launch(e.clientX, e.clientY);
+        });
+
+        window.addEventListener('resize', () => {
+          this.fireworks.resize();
+          this.lanterns.resize();
+        });
+
+        document.addEventListener('visibilitychange', () => {
+          this.isPaused = document.hidden;
+        });
+      }
+
+      startCelebration() {
+        if (this.started) return;
+        this.started = true;
+        this.sound.resume();
+
+        this.introScreen.classList.add('hidden');
+
+        // Opening Grand Salvo
+        this.sound.playTempleBell();
+        this.fireworks.launchSalvo(8, ['willow', 'peony', 'heart', 'dahlia'], 1.35);
+
+        setTimeout(() => {
+          this.sound.playSitarPluck();
+          this.fireworks.launchSalvo(6, ['crossette', 'palm', 'ring', 'willow'], 1.45);
+        }, 800);
+
+        this._startWishesCycle();
+
+        setInterval(() => {
+          if (!this.isPaused && Math.random() < 0.35) {
+            this.sound.playTempleBell();
+          }
+        }, 18000);
+      }
+
+      _startWishesCycle() {
+        if (this.wishInterval) clearInterval(this.wishInterval);
+        this.wishInterval = setInterval(() => {
+          this.wishNodes[this.currentWishIdx].classList.remove('active');
+          this.currentWishIdx = (this.currentWishIdx + 1) % this.wishNodes.length;
+          this.wishNodes[this.currentWishIdx].classList.add('active');
+        }, 6200);
+      }
+
+      _tick() {
+        if (!this.isPaused) {
+          this.lanterns.update();
+          if (this.started) {
+            this.fireworks.update();
+          }
+        }
+        this.lanterns.draw();
+        if (this.started) {
+          this.fireworks.draw();
+        }
+        requestAnimationFrame(this._tick);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      new CelebrationController();
+    });
+  </script>
+</body>
+</html>
